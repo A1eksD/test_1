@@ -11,30 +11,30 @@ export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http, './asses/i18n', '.json')
 }
 
-@Injectable({
-  providedIn: 'root' ,
-  // providers : [provideRouter(routes), provideHttpClient(), BrowserModule, CommonModule, 
-  //   importProvidersFrom(HttpClientModule),
-  //   importProvidersFrom(TranslateModule.forRoot({
-  //     loader: {
-  //       provide: TranslateModule,
-  //       useFactory: HttpLoaderFactory,
-  //       deps: [HttpClient]
-  //     }
-  //   }))]
-})
+// @Injectable({
+//   providedIn: 'root' ,
+//   // providers : [provideRouter(routes), provideHttpClient(), BrowserModule, CommonModule, 
+//   //   importProvidersFrom(HttpClientModule),
+//   //   importProvidersFrom(TranslateModule.forRoot({
+//   //     loader: {
+//   //       provide: TranslateModule,
+//   //       useFactory: HttpLoaderFactory,
+//   //       deps: [HttpClient]
+//   //     }
+//   //   }))]
+// })
 
-// export const appConfig: ApplicationConfig = {
-//   providers : [provideRouter(routes), provideHttpClient(), BrowserModule, CommonModule, 
-//   importProvidersFrom(HttpClientModule),
-//   importProvidersFrom(TranslateModule.forRoot({
-//     loader: {
-//       provide: TranslateModule,
-//       useFactory: HttpLoaderFactory,
-//       deps: [HttpClient]
-//     }
-//   }))]
-// }
+export const appConfig: ApplicationConfig = {
+  providers : [provideRouter(routes), provideHttpClient(), BrowserModule, CommonModule, 
+  importProvidersFrom(HttpClientModule),
+  importProvidersFrom(TranslateModule.forRoot({
+    loader: {
+      provide: TranslateModule,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+    }
+  }))]
+}
 
 export class TranslatedataService {
 

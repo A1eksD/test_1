@@ -12,6 +12,9 @@ import { forkJoin } from 'rxjs';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+  value = true;
+
+  //---------------------------------------------------
   title = 'x';
   // translateData = inject(TranslatedataService);
 
@@ -27,21 +30,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.translateService.addLangs(this.availableLanguages);
-    this.translateService.setDefaultLang('english');
+    this.changeValue();
     this.buildLanguageOptions();
   }
 
   private buildLanguageOptions() {
-    const ENGLISH =  this.translateService.get('ENGLISH');
-    const PORTUGUESE = this.translateService.get('PORTUGUESE');
-    const SPANISH = this.translateService.get('SPANISH');
-    const FRENCH = this.translateService.get('FRENCH');
+    const ENGLISH =  this.translateService.get('eng');
+    const DEUTSCH = this.translateService.get('ger');
 
     forkJoin([
       ENGLISH,
-      PORTUGUESE,
-      SPANISH,
-      FRENCH
+      DEUTSCH,
+
     ]).subscribe(
       _response => {
         this.languageOptions = [{
@@ -59,5 +59,15 @@ export class AppComponent implements OnInit {
     this.translateService.use(language.value);
   }
   
+
+  changeValue(){
+    if (this.value) {
+      this.translateService.setDefaultLang('eng');
+      this.value = false;
+    } else {
+      this.translateService.setDefaultLang('ger');
+      this.value = true;
+    }
+  }
 
 }

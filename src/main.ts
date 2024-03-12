@@ -4,5 +4,5 @@ import { AppComponent } from './app/app.component';
 
 
 
-bootstrapApplication(AppComponent)
+bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
